@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CC Laddad</title>
+</head>
+<body>
+    Hej, vad heter du <input id="namn" type="text"><br>
+    Hur utvilad känner du dig 1-5? 
+    <input type="text" id="rest-level">
+    <button id="calculate" onclick="laddning()">Räkna ut laddningsnivå</button>
+
+    <p id="output"></p>
+
+    <script>
+        function laddning() {
+            const namn = document.getElementById('namn').value;
+            const restLevel = document.getElementById('rest-level').value;
+
+            document.getElementById('output').innerHTML = `
+                Hej ${namn} din laddningsnivå
+                är ${restLevel/5*100}%
+            `;
+        }
+
+    </script>
+    
+</body>
+</html>
