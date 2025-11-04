@@ -13,7 +13,14 @@ function greeter(userName) {
     }
 
     greeting = `Hej ${userName}! ${greeting}`;
-    console.log(greeting);
-    document.getElementById("greeter-output").innerHTML = greeting;
+    //console.log(greeting);
+    
+    return greeting;
+
 }
-greeter("Dennis");
+
+const greetDennis = greeter("Dennis");
+document.getElementById("greeter-output").innerHTML = greetDennis;
+
+document.getElementById("other-output").innerHTML = greeter("Fredde");
+
