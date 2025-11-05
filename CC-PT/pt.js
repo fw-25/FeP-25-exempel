@@ -26,12 +26,12 @@ function pt() {
 
 
 document.getElementById("btn-run").addEventListener("click", function () {
-    console.log("Du clickade på knappen!");
+    console.log("Du klickade på knappen!");
     pt();
 });
 
 function btn2Handler() {
-    console.log("Du clickade på knapp2!");
+    console.log("Du klickade på knapp2!");
     pt();
 }
 
