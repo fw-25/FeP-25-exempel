@@ -22,3 +22,19 @@ function pt() {
 
     document.getElementById("pt-comment").innerHTML = ptComment;
 }
+
+
+
+document.getElementById("btn-run").addEventListener("click", function () {
+    console.log("Du clickade på knappen!");
+    pt();
+});
+
+function btn2Handler() {
+    console.log("Du clickade på knapp2!");
+    pt();
+}
+
+// Ett annat alternativ
+document.getElementById("btn-2").addEventListener("click", btn2Handler);
+
