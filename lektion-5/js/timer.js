@@ -11,5 +11,10 @@ document.getElementById("stop-timer").addEventListener("click", () => {
     clearInterval(myTimer);
 });
 
+document.getElementById("my-list").style.backgroundColor = "red";
+
+const imgFile = document.getElementById("mole").getAttribute("src");
+console.log(imgFile);
+
 
 
