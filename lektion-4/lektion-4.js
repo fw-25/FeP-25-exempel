@@ -37,7 +37,7 @@ const person = {
 console.log(`${person.name} gillar ${person.likes}`) // Linus gillar C
 //console.log(`${person["name"]} gillar ${person["likes"]}`)
 const persons = [
-    { name: "Linus", likes: "C" },
+    { name: "Linus", likes: "Linux" },
     { name: "Dennis", likes: "Robotar" },
     { name: "Jonny", likes: "Unity" },
     { name: "Niraj", likes: "Java"}
