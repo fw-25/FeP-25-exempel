@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen timer</title>
+</head>
+
+<body>
+    <h1 id="countdown">-</h1>
+    <input id="tid" type="number" placeholder="Ange tid">
+    <button id="btn-start">Starta</button>
+
+    <script>
+        let sekunder;
+        let timer = null;
+
+        function updateOutput(content) {
+            document.getElementById("countdown").innerText = content;
+        }
+
+        function startTimer() {
+            if (timer !== null) return; // starta inte en ny timer om den redan finns
+
+            sekunder = Number(document.getElementById("tid").value);
+
+            updateOutput(sekunder);
+
+            timer = setInterval(() => {
+                sekunder--;
+                updateOutput(sekunder);
+
+                if (sekunder <= 0) {
+                    updateOutput("Tiden är ute");
+                    clearInterval(timer);
+                    timer = null;
+                }
+            }, 1000);
+        }
+
+        document.getElementById('btn-start').addEventListener('click', startTimer);
+
+
+
+
+    </script>
+
+</body>
+
+</html>
