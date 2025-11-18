@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #lightbox {
+            /* position: absolute; */
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, .5);
+        }
+    </style>
+</head>
+<body>
+    <h1>Lightbox</h1>
+
+    <div id="lightbox-container">
+        <img src="./lightbox-img/thumb-img-016.png">
+        <img src="./lightbox-img/thumb-img-028.png">
+        <img src="./lightbox-img/thumb-img-061.png">
+    </div>
+
+    <div id="lightbox"></div>
+
+    <script>
+        for (const img of document.querySelectorAll("#lightbox-container > img")) {
+            console.log(img);
+            img.addEventListener('click', () => {
+                document.getElementById("lightbox").innerHTML = `
+                    <img src="${img.src}">
+                `;
+            });
+        }
+
+    </script>
+</body>
+</html>
