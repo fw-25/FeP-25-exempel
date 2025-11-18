@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="time">:</div>
+    <div id="form-output">...</div>
+    <!-- <form id="my-form" action="form-handler.php" method="post"> -->
+    <form>
+        
+        Text-input: <input name="my-text" type="text"  class="inp"><br> <!-- name behövs endast om vi ska skicka formdata -->
+        Number-input <input id="my-number" type="number"  class="inp"><br>
+
+
+        <button id="btn-ok" type="button">OK</button>
+    </form>
+
+
+
+
+
+    <script>
+        document.getElementById("btn-ok").addEventListener('click', (evt) => {
+            console.log(evt)
+        });
+
+
+        // ------------ Date:
+        const d = new Date();
+        console.log(`i dag är det ${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}`);
+
+        const vappen = new Date(2026, 4, 1, 9, 30); // OBS maj = 4!
+        console.log(vappen);
+        console.log(vappen.toISOString());
+        console.log(vappen.toLocaleDateString());
+
+        function updateClock() {
+            const d = new Date();
+            const hour = String(d.getHours()).padStart(2, "0");
+            const minute = String(d.getMinutes()).padStart(2, "0");
+            const second = String(d.getSeconds()).padStart(2, "0");
+
+            document.getElementById("time").textContent = `
+                ${hour}:${minute}:${second}
+            `;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+
+    </script>
+</body>
+</html>

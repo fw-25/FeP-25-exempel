@@ -17,8 +17,23 @@ function activateLight(lightNumber) {
     light.style.backgroundColor = COLORS[color]; // ta färgen från COLORS-konstanten
 }
 
+// lösning 2, accelererande ljus
+function nextLight(delay) {
+    if (delay < 100) delay = 100; // guard statement (base case)
+    
+    const randNumber = Math.ceil(Math.random() * 3);
+    activateLight(randNumber);
+    console.log(`waiting ${delay} ms...`);
+
+    setTimeout(() => nextLight(delay-50), delay);
+}
+
+nextLight(1000);
+
+
+/*
 setInterval(() => {
     const randNumber = Math.ceil(Math.random()*3);
     activateLight(randNumber);
-}, 500);
+}, 500); */
 
