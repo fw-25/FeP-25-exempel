@@ -8,13 +8,14 @@
 <body>
     <h2>lektion 8</h2>
     <p>Hello <span id="namn"></span>! 
-        <div id="visits"></div>
-        <button type="button" id="logout">Glöm mig</button>
+        <span id="visits"></span><button type="button" id="logout">Glöm mig</button>
     </p>
-    
+    <p>Dagens dad joke: <div id="joke"></div></p>
+    <p id="page-content"></p>
 
+    <p id="footer"></p>
+    
     <script>
-        
         let userName = localStorage.getItem("user-name");
         if (!userName) {
             userName = prompt("vad heter du?");
@@ -32,6 +33,52 @@
             localStorage.removeItem("visit-count");
             location.reload();
         });
+
+        // Synkront exempel:
+        function two() {
+            for (let index = 0; index < 10000; index++) {
+                console.log("...");
+            }
+            console.log("Två");
+        }
+        console.log("Ett");
+        two();
+        console.log("Tre");
+
+        // Asynkront exempel:
+        console.log(1);
+        setTimeout(() => console.log(2), 100);
+        console.log(3);
+
+        // https://icanhazdadjoke.com/
+
+        function handleJoke() {
+            console.log(document.getElementById("joke").innerText);
+        }
+
+        async function getJoke() {
+            const jokeResponse = await fetch("https://icanhazdadjoke.com/", {
+                headers: { "Accept": "text/plain" }
+            });
+            const jokeText = await jokeResponse.text();
+            document.getElementById("joke").innerText = jokeText;
+            
+            handleJoke(); // här kan vi läsa elementet
+        }
+        getJoke();
+
+        document.getElementById("footer").innerText = "-----------";
+
+        handleJoke(); // funkar inte eftersom getJoke är async
+        
+        async function addPageContent() {
+            const resp = await fetch("./text.txt");
+            //console.log(await resp.text());
+            document.getElementById("page-content").innerHTML = await resp.text();
+        }
+        addPageContent();
+
+
 
     </script>
 </body>
