@@ -18,7 +18,9 @@
             background-color: rgba(0, 0, 0, .7);
         }
         #thumbnail-container {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(2, 200px);
+            grid-template-rows: repeat(2, 1fr);
             gap: 5px;
         }
         #thumbnail-container img {

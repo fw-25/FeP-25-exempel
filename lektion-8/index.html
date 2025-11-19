@@ -6,77 +6,32 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="time">:</div>
-    <div id="form-output" style="font-size: larger; background-color: yellow;">...</div>
-    <!-- <form id="my-form" action="form-handler.php" method="post"> -->
-    <form>
-        
-        Text-input: <input id="my-text" name="my-text" type="text" class="inp"><br> <!-- name behövs endast om vi ska skicka formdata -->
-        Number-input <input id="my-number" type="number" class="inp"><br>
-        Date-input <input type="date" class="inp"><br>
-        Range-input <input type="range" min="0" max="99" step="1" class="inp"><br>
-        Välj flera alternativ:<br>
-        <label for="box-1">Ett: </label><input type="checkbox" id="box-1" name="my-checkbox" value="Ett" class="inp"><br>
-        Två: <input type="checkbox" name="my-checkbox" value="Två" class="inp">
-        <br>Välj ett alternativ: 
-        <input type="radio" name="my-radio" value="Ett" checked="true" class="inp">
-        <input type="radio" name="my-radio" value="Två"  class="inp">
-        <br>Välj ett alternativ: 
-        <select class="inp">
-            <option value="linux">Linux</option>
-            <option value="mac">Mac</option>
-            <option value="win">Windows</option>
-        </select>
-        <br>Berätta något:<br>
-        <textarea class="inp"></textarea> 
-
-        <br><button id="btn-ok" type="button">OK</button>
-    </form>
-
-    <a href="lightbox.html">Lightbox</a>
+    <h2>lektion 8</h2>
+    <p>Hello <span id="namn"></span>! 
+        <div id="visits"></div>
+        <button type="button" id="logout">Glöm mig</button>
+    </p>
+    
 
     <script>
-        for (const inp of document.querySelectorAll(".inp")) {
-            inp.addEventListener('input', () => {
-                let output = inp.value;
+        
+        let userName = localStorage.getItem("user-name");
+        if (!userName) {
+            userName = prompt("vad heter du?");
+            localStorage.setItem("user-name", userName);
+        } 
+        document.getElementById("namn").textContent = userName;
 
-                if (inp.getAttribute("type") === "checkbox") {
-                    if (!inp.checked) {
-                         output = "-";
-                    }
-                }
-                document.getElementById("form-output").textContent = output;
-          
-             })
-        }
+        const visitCount = localStorage.getItem("visit-count") || 1  // default 0
+        localStorage.setItem("visit-count", Number(visitCount)+1);
+        document.getElementById("visits").textContent = `Detta är ditt besök nummer ${visitCount}.`;
 
-        document.getElementById("btn-ok").addEventListener('click', () => {
-            console.log("Button clicked!")
+        document.getElementById("logout").addEventListener('click', () => {
+            //localStorage.clear();
+            localStorage.removeItem("user-name");
+            localStorage.removeItem("visit-count");
+            location.reload();
         });
-
-
-        // ------------ Date:
-        const d = new Date();
-        console.log(`i dag är det ${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}`);
-
-        const vappen = new Date(2026, 4, 1, 9, 30); // OBS maj = 4!
-        console.log(vappen);
-        console.log(vappen.toISOString());
-        console.log(vappen.toLocaleDateString());
-
-        function updateClock() {
-            const d = new Date();
-            const hour = String(d.getHours()).padStart(2, "0");
-            const minute = String(d.getMinutes()).padStart(2, "0");
-            const second = String(d.getSeconds()).padStart(2, "0");
-
-            document.getElementById("time").textContent = `
-                ${hour}:${minute}:${second}
-            `;
-        }
-
-        updateClock();
-        setInterval(updateClock, 1000);
 
     </script>
 </body>

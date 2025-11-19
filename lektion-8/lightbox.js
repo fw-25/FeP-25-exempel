@@ -1,4 +1,4 @@
-const IMAGE_ID = [16, 28, 61, 49];
+const IMAGE_ID = [16, 28, 61, 69];
 for (const id of IMAGE_ID) {
     document.getElementById("thumbnail-container").innerHTML += `
         <img data-id="${id}" src="./lightbox-img/thumb-img-0${id}.png">
