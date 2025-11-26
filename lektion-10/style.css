@@ -1,0 +1,16 @@
+.menu-item {
+    border: 1px solid black;
+    width: 120px;
+    margin-bottom: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+.menu-item:hover {
+    background-color: rgb(255, 222, 172);
+}
+#page-container > div {
+    margin: 10px;
+}
+.hidden {
+    display: none;
+}

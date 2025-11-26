@@ -3,11 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
     <title>lektion 10</title>
 </head>
 <body>
 
-    <div id="joke"></div>
+    <nav>
+        <div class="menu-item" data-page="main">Huvudsida</div>
+        <div class="menu-item" data-page="info">Mera information</div>
+        <div class="menu-item" data-page="joke">Dagens skämt</div>
+    </nav>
+
+    <div id="page-container">
+        <div id="page-main">Välkommen till hemsidan!</div>
+        <div id="page-info" class="hidden">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nesciunt rerum vel aliquid. Adipisci laborum modi rem eligendi aliquid beatae tempora dolorum sit? Vel et dolore voluptatem doloribus ipsa doloremque?</div>
+        <div id="page-joke" class="hidden"></div>
+    </div>
+
+    
     
     <script src="lektion-10.js"></script>
 </body>
