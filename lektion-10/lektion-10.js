@@ -1,16 +1,27 @@
+async function loadPageContent(page) {
+    const resp = await fetch(`./pages/${page}.json`);
+    const pageData = await resp.json();
+    console.log(pageData);
+    document.getElementById("page-title").innerText = pageData.title;
+    document.getElementById("page-content").innerHTML = pageData.content;
 
+    if (page === "joke") getJoke();
+}
 
 // Meny
 document.querySelector("nav").addEventListener('click', evt => {
     if (!evt.target.classList.contains("menu-item")) return;
 
     const page = evt.target.dataset.page;
-    console.log(page);
+    loadPageContent(page);
 
+    // version 1:
+    /*
     document.querySelectorAll("#page-container > div").forEach(elem => {
         elem.classList.add("hidden");
     });
     document.getElementById(`page-${page}`).classList.remove("hidden");
+    */
 
 });
 
@@ -23,7 +34,7 @@ async function getJoke() {
     console.log(jokeObj);
     document.getElementById("page-joke").innerText = jokeObj.joke;
 }
-getJoke();
+//getJoke();
 
 const product = { name: `Kaffe`, price: 3, stock: 100};
 console.log(product);
