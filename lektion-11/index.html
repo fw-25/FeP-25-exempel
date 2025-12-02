@@ -26,12 +26,6 @@
         })();
 
         // RENA FUNKTIONER
-        // Inte ren pga fetch (men nödvändig)
-        async function getWeather() {
-            const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=60&longitude=25&current_weather=true&windspeed_unit=ms");
-            return await res.json();
-        }
-
         // Ren funktion
         function pureWeather(weatherData) {
             return `
@@ -41,9 +35,12 @@
             `;
         }
 
-        // Vi modifierar DOM:en utanför vår rena funktion
+        // Vi gör vår fetch och modifierar DOM utanför vår rena funktion
         (async () => {
-            document.body.append(pureWeather(await getWeather()))
+            const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=60&longitude=25&current_weather=true&windspeed_unit=ms");
+            const weatherData = await res.json();
+
+            document.body.append(pureWeather(weatherData));
         })();
         
  
