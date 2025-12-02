@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vedervärdigt Väder</title>
+</head>
+<body>
+    <b id="output">Fetching weather...</b>
+    
+    <script>
+        async function getWeather() {
+            const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=60&longitude=25&current_weather=true&windspeed_unit=ms");
+            const weatherData = await res.json();
+
+            const curWeather = weatherData.current_weather;
+            console.log(curWeather);
+
+            document.getElementById("output").textContent = `
+                Det är ${curWeather.temperature}°C 
+                och blåser ${curWeather.windspeed} m/s
+            `;
+        }
+        getWeather();
+
+    </script>
+</body>
+</html>
