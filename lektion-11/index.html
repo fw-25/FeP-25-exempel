@@ -25,6 +25,29 @@
             document.body.append(date.toISOString());
         })();
 
+        // RENA FUNKTIONER
+        // Inte ren pga fetch (men nödvändig)
+        async function getWeather() {
+            const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=60&longitude=25&current_weather=true&windspeed_unit=ms");
+            return await res.json();
+        }
+
+        // Ren funktion
+        function pureWeather(weatherData) {
+            return `
+                Det är ${weatherData.current_weather.temperature}°C 
+                och blåser ${weatherData.current_weather.windspeed} m/s.
+                Det är alltså ${weatherData.current_weather.temperature < 15 ? "kallt" : "varmt"}.
+            `;
+        }
+
+        // Vi modifierar DOM:en utanför vår rena funktion
+        (async () => {
+            document.body.append(pureWeather(await getWeather()))
+        })();
+        
+ 
+
 
     </script>
     

@@ -9,7 +9,25 @@
     <b id="output">Fetching weather...</b>
     
     <script>
-        async function getWeather() {
+        (async () => {
+            const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=60&longitude=25&current_weather=true&windspeed_unit=ms");
+            const weatherData = await res.json();
+
+            const curWeather = weatherData.current_weather;
+            console.log(curWeather);
+
+            //const kalltVarmt = curWeather.temperature < 15 ? "kallt" : "varmt";
+
+            document.getElementById("output").textContent = `
+                Det är ${curWeather.temperature}°C 
+                och blåser ${curWeather.windspeed} m/s.
+                Det är alltså ${curWeather.temperature < 15 ? "kallt" : "varmt"}.
+            `;
+        })();
+        
+
+
+        /* async function getWeather() {
             const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=60&longitude=25&current_weather=true&windspeed_unit=ms");
             const weatherData = await res.json();
 
@@ -24,7 +42,7 @@
                 Det är alltså ${curWeather.temperature < 15 ? "kallt" : "varmt"}.
             `;
         }
-        getWeather();
+        getWeather(); */
 
     </script>
 </body>
